@@ -11,7 +11,7 @@
                 return;
             }
 
-            const serverUrl = 'http://143.198.143.178:3000';
+            const serverUrl = 'https://143.198.143.178:3000';
             try {
                 const response = await fetch(`${serverUrl}/horoscope?birthdate=${birthdate}`);
                 if (!response.ok) {
