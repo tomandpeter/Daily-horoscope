@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Horoscope</title>
+    <script>
+        async function loadHoroscope() {
+            const birthdate = document.getElementById('birthdate').value;
+            if (!birthdate) {
+                alert('Please enter your birthdate.');
+                return;
+            }
+
+            const serverUrl = 'http://143.198.143.178:3000';
+            try {
+                const response = await fetch(`${serverUrl}/horoscope?birthdate=${birthdate}`);
+                const data = await response.json();
+                document.getElementById('horoscope').innerText = data.horoscope.horoscope;
+            } catch (error) {
+                console.error('Error fetching horoscope:', error);
+                document.getElementById('horoscope').innerText = 'Failed to load horoscope.';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Enter Your Birthdate</h1>
+    <input type="date" id="birthdate">
+    <button onclick="loadHoroscope()">Get Horoscope</button>
+
+    <h2>Today's Horoscope</h2>
+    <p id="horoscope">Enter your birthdate to see your horoscope.</p>
+</body>
+</html>
