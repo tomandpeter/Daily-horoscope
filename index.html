@@ -14,8 +14,11 @@
             const serverUrl = 'http://143.198.143.178:3000';
             try {
                 const response = await fetch(`${serverUrl}/horoscope?birthdate=${birthdate}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 const data = await response.json();
-                document.getElementById('horoscope').innerText = data.horoscope.horoscope;
+                document.getElementById('horoscope').innerText = data.horoscope;
             } catch (error) {
                 console.error('Error fetching horoscope:', error);
                 document.getElementById('horoscope').innerText = 'Failed to load horoscope.';
